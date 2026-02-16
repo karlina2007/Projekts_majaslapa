@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+
+<header>
+  <h1>Nav ideju ko lasīt?</h1>
+
+</header>
+
+<div class="linki">
+  <a href="/">Sākums </a>
+  <a href="/pievienot"> Pievieno savu izlasīto grāmatu</a>
+  <a href="/dzest">Izdzēs</a>
+  <a href="/random">Nav ideju ko lasīt?</a>
+</div>
+
+
+<!-- teksts no api par gramatam -->
+<main>
+  <h1>{{nosaukums}}</h1>
+  <p>{{autors}}</p>
+
+  <p>{{ apraksts }}</p>
+</main>
+
+</body>
+
+
+</html>
