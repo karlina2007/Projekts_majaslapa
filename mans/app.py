@@ -67,6 +67,7 @@ def pievienot_lapa():
         apraksts = request.form.get("apraksts")
         if nosaukums:
             pievienot(nosaukums, autors, apraksts)
+            f"Pievienots"
 
     return render_template("pievienot.html")
 
@@ -76,11 +77,15 @@ def pievienot_lapa():
 
 @app.route("/dzest", methods=["GET", "POST"])
 def dzest_lapa():
+    atb =""
     if request.method == "POST":
         nosaukums = request.form.get("nosaukums")
         if nosaukums:
             dzest(nosaukums)
-    return render_template("dzest.html")
+            atb = "Grāmata ar ievadīto nosaukumu ir dzēsta."
+        else:
+            atb = "Ievadi nosaukumu!"
+    return render_template("dzest.html", atb=atb)
 
 
 
