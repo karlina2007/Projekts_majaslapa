@@ -1,0 +1,65 @@
+body {
+    background-color: #8E4162;
+    font-family: "Lucida Sans", sans-serif;
+
+}
+
+header {
+    background-color: #41393E;
+    color: #EDEDED;
+    padding: 1%;
+    text-align: center;
+    width: 100%;
+}
+
+.linki {
+    background: #EDA2C0;
+    padding: 1%;
+    text-align: center;
+    width: 100%;
+}
+
+.linki a {
+    color: #41393E;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+main {
+
+    background: #EDA2C0;
+    padding: 1%;
+    border-radius: 15px;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+/* pogas */
+button {
+    background-color: #41393E;
+    color: #EDEDED;
+    padding: 1%;
+    border: none;
+    margin: 1%;
+    border-radius: 3px;
+
+}
+/* līnijas varbut vel */
+th, td {
+
+    padding: 5px;
+     border-radius: 10px;
+}
+
+th {
+    background-color: #41393E;
+    color: white;
+}
