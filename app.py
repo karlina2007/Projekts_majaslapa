@@ -15,7 +15,7 @@ def izveido_datubazi():
             apraksts TEXT
         )
     """)
-     conn.commit()
+    conn.commit()
     conn.close()
 
 izveido_datubazi()
