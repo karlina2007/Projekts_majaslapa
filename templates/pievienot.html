@@ -2,52 +2,47 @@
 <html lang="lv">
 <head>
 <meta charset="UTF-8">
+
 <title></title>
+
+<!-- links uz css failu -->
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<header>
-  <h1>Manas grāmatas</h1>
-</header>
 
+<header>
+  <h1>Pievieno grāmatu</h1>
+</header>
+<!-- parvietošanas caur lapam -->
 <div class="linki">
   <a href="/">Sākums</a>
   <a href="/pievienot">Pievieno savu izlasīto grāmatu</a>
-  <a href="/dzest">Izdzēs!</a>
+  <a href="/dzest">Izdzēs</a>
   <a href="/random">Nav ideju ko lasīt?</a>
 </div>
 
+
 <main>
-<!-- izveido tabulu ar gramatas noaukumu autoru un aprakstu izņemot no datubazes -->
-  {% if gramatas %}
-  <table>
-    <thead>
-      <tr>
-        <th>Nosaukums</th>
-        <th>Autors</th>
-        <th>Ko es domāju par šo grāmatu?</th>
-      </tr>
-      
-    </thead>
-    <tbody>
-      {% for g in gramatas %}
-      <tr>
-        <td><b>{{ g[0] }}</b></td>
-        <td>{{ g[1] }}</td>
-        <td>{{ g[2] }}</td>
-      </tr>
+<!--ievades logi( obligāti vajag lai ivada nosaukumu lai pēc tam var dzēst) -->
+  <form method="post">
+  <!-- nosaukums -->
+    <label>Ievadi grāmatas nosaukumu:</label>
+    <input type="text" name="nosaukums" required>
+<!-- autors -->
+    <label>Ievadi autoru:</label>
+    <input type="text" name="autors">
 
-      {% endfor %}
-    </tbody>
-  </table>
-<!-- ja neka nav iekša -->
-  {% else %}
-    <thead>
-      <tr>
+  <!-- gramatas apraksts -->
+    <label>Ko tu domāji par grāmatu?</label>
+    <input name="apraksts" rows="4"></input>
 
-        <th>Vieta tavām grāmatām ej un pievieno!</th>
-    </thead>
-  {% endif %}
+    <button type="submit">Pievienot</button>
+  </form>
+
+
+
+
 </main>
+
 </body>
 </html>
