@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+ <header>
+
+  <h1>Dzēst!</h1>
+ </header>
+
+<div class="linki">
+  <a href="/">Sākums</a>
+  <a href="/pievienot">Pievieno savu izlasīto grāmatu</a>
+  <a href="/dzest">Izdzēs!</a>
+
+  <a href="/random">Nav ideju ko lasīt?</a>
+</div>
+
+
+
+<!-- podzina un ievades logs -->
+<main>
+  <form method="post">
+    
+    <label>Ievadi grāmatas nosaukumu, kuru gribi izdzēst:</label>
+    <input type="text" name="nosaukums">
+    <button type="submit">Izdzēst!</button>
+  </form>
+
+
+</main>
+</body>
+
+
+
+</html>
