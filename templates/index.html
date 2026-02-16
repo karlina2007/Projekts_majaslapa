@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <h1>Manas grāmatas</h1>
+</header>
+
+<div class="linki">
+  <a href="/">Sākums</a>
+  <a href="/pievienot">Pievieno savu izlasīto grāmatu</a>
+  <a href="/dzest">Izdzēs!</a>
+  <a href="/random">Nav ideju ko lasīt?</a>
+</div>
+
+<main>
+<!-- izveido tabulu ar gramatas noaukumu autoru un aprakstu izņemot no datubazes -->
+  {% if gramatas %}
+  <table>
+    <thead>
+      <tr>
+        <th>Nosaukums</th>
+        <th>Autors</th>
+        <th>Ko es domāju par šo grāmatu?</th>
+      </tr>
+      
+    </thead>
+    <tbody>
+      {% for g in gramatas %}
+      <tr>
+        <td><b>{{ g[0] }}</b></td>
+        <td>{{ g[1] }}</td>
+        <td>{{ g[2] }}</td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+<!-- ja neka nav iekša -->
+  {% else %}
+    <thead>
+      <tr>
+
+        <th>Vieta tavām grāmatām ej un pievieno!</th>
+    </thead>
+  {% endif %}
+</main>
+</body>
+</html>
