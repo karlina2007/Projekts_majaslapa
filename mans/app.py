@@ -3,9 +3,9 @@ import sqlite3, requests, random
 
 ## izveidojas datubaze ja ta jau neeksiste
 app = Flask(__name__)
-DB = "gramatas.db"
+DB_NAME = "gramatas.db"
 def izveido_datubazi():
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     c.execute("""
         CREATE TABLE IF NOT EXISTS gramatas (
@@ -24,7 +24,7 @@ izveido_datubazi()
 
 ### Lietotaja ierakstītos datus pievieno/iemet datubāzē
 def pievienot(nosaukums, autors, apraksts):
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
 
     c.execute("INSERT INTO gramatas (nosaukums, autors, apraksts) VALUES (?, ?, ?)",
@@ -34,7 +34,7 @@ def pievienot(nosaukums, autors, apraksts):
 
 # Lietotāja ievadītā grāmata tiek dzēsta(lietotajs ievada gramatas nosaukumu to kas ir tabula. Ta ir funkcija kuru velak pievieno lapai)
 def dzest(nosaukums):
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     c.execute("DELETE FROM gramatas WHERE nosaukums = ?", (nosaukums,))
     conn.commit()
@@ -42,7 +42,7 @@ def dzest(nosaukums):
 
 #### Dati tiek paņemti lai pec tam viņus paraditu
 def dabut_gramatas():
-    conn = sqlite3.connect(DB)
+    conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     c.execute("SELECT nosaukums, autors, apraksts FROM gramatas")
     dati = c.fetchall()
@@ -96,7 +96,8 @@ def nejauša():
     try:
         kategorijas = ["fiction", "history", "romance", "science"]
         tema = random.choice(kategorijas)
-        url = f"https://www.googleapis.com/books/v1/volumes?q=subject:{tema}&maxResults=10"
+        api_key = "AIzaSyCdM3V9v-sue1WXAmd7wMcbZXqxyYPqOcs"
+        url = f"https://www.googleapis.com/books/v1/volumes?q=subject:{tema}&maxResults=10&key={api_key}"
         dati = requests.get(url, timeout=4).json()
         gr = random.choice(dati["items"])["volumeInfo"]
         nosaukums = gr.get("title", "Bez nosaukuma")
@@ -104,7 +105,7 @@ def nejauša():
         apraksts = gr.get("description", "Apraksts nav pieejams.")
 
     except:
-        nosaukums, autors, apraksts = "Nav apraksta", "", ""
+        nosaukums, autors, apraksts = "Nav", "", ""
     return render_template("random.html", nosaukums=nosaukums, autors=autors, apraksts=apraksts)
 
 # palaiž/atjauno automatiski
